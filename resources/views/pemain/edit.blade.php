@@ -4,16 +4,16 @@
 <div class="container">
     <h1>Edit Pemain</h1>
 
-    <form action="{{ route('pemain.update', $pemain->id) }}" method="POST">
+    <form action="{{ route('pemain.update', $pemain->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
             <label for="foto" class="form-label">Foto</label>
-            <input type="text" class="form-control" id="foto" name="foto" value="{{ $pemain->foto }}" required>
+            <input type="file" class="form-control" id="foto" name="foto" value="{{ $pemain->foto }}" required>
         </div>
         <div class="mb-3">
             <label for="gclub" class="form-label">Gambar Klub</label>
-            <input type="text" class="form-control" id="gclub" name="gclub" value="{{ $pemain->gclub }}" required>
+            <input type="file" class="form-control" id="gclub" name="gclub" value="{{ $pemain->gclub }}" required>
         </div>
         <div class="mb-3">
             <label for="nama" class="form-label">Nama</label>

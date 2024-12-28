@@ -4,15 +4,15 @@
 <div class="container">
     <h1>Tambah Pertandingan</h1>
 
-    <form action="{{ route('pertandingan.store') }}" method="POST">
+    <form action="{{ route('pertandingan.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="gtim1" class="form-label">Gambar Tim 1</label>
-            <input type="text" class="form-control" id="gtim1" name="gtim1" required>
+            <input type="file" class="form-control" id="gtim1" name="gtim1" required>
         </div>
         <div class="mb-3">
             <label for="gtim2" class="form-label">Gambar Tim 2</label>
-            <input type="text" class="form-control" id="gtim2" name="gtim2" required>
+            <input type="file" class="form-control" id="gtim2" name="gtim2" required>
         </div>
         <div class="mb-3">
             <label for="tim1" class="form-label">Tim 1</label>

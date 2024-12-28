@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Tambah Klasemen</h1>
 
-    <form action="{{ route('klasemen.store') }}" method="POST">
+    <form action="{{ route('klasemen.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="club" class="form-label">Klub</label>
@@ -12,7 +12,7 @@
         </div>
         <div class="mb-3">
             <label for="gclub" class="form-label">Gambar Klub</label>
-            <input type="text" class="form-control" id="gclub" name="gclub" required>
+            <input type="file" class="form-control" id="gclub" name="gclub" required>
         </div>
         <div class="mb-3">
             <label for="tanding" class="form-label">Tanding</label>

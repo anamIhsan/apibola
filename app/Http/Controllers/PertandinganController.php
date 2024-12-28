@@ -20,7 +20,23 @@ class PertandinganController extends Controller
 
     public function store(Request $request)
     {
-        Pertandingan::create($request->all());
+        $pertandingan = Pertandingan::create($request->all());
+
+        // Simpan file gambar Foto
+        $imageNamegtim1 = time() . '1.' . $request->gtim1->extension();
+        $request->gtim1->move(public_path('images'), $imageNamegtim1);
+
+        // Simpan file gambar gclub
+        $imageNamegtim2 = time() . '2.' . $request->gtim2->extension();
+        $request->gtim2->move(public_path('images'), $imageNamegtim2);
+
+        $gtim1 = 'images/'.$imageNamegtim1;
+        $gtim2 = 'images/'.$imageNamegtim2;
+
+        $pertandingan->gtim1 = $gtim1;
+        $pertandingan->gtim2 = $gtim2;
+
+        $pertandingan->save();
 
         return redirect()->route('pertandingan.index')->with('success', 'data berhasil ditambahkan.');
     }
@@ -34,6 +50,30 @@ class PertandinganController extends Controller
     {
 
         $pertandingan->update($request->all());
+
+        if ($request->gtim1) {
+            // Simpan file gambar gtim1
+            $imageNamegtim1 = time() . '1.' . $request->gtim1->extension();
+            $request->gtim1->move(public_path('images'), $imageNamegtim1);
+
+            $gtim1 = 'images/'.$imageNamegtim1;
+
+            $pertandingan->gtim1 = $gtim1;
+
+            $pertandingan->save();
+        }
+
+        if ($request->gtim2) {
+            // Simpan file gambar gtim2
+            $imageNamegtim2 = time() . '2.' . $request->gtim2->extension();
+            $request->gtim2->move(public_path('images'), $imageNamegtim2);
+
+            $gtim2 = 'images/'.$imageNamegtim2;
+
+            $pertandingan->gtim2 = $gtim2;
+
+            $pertandingan->save();
+        }
 
         return redirect()->route('pertandingan.index')->with('success', 'data berhasil diperbarui.');
     }

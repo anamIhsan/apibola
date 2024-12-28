@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Edit Klasemen</h1>
 
-    <form action="{{ route('klasemen.update', $klasemen->id) }}" method="POST">
+    <form action="{{ route('klasemen.update', $klasemen->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -13,7 +13,7 @@
         </div>
         <div class="mb-3">
             <label for="gclub" class="form-label">Gambar Klub</label>
-            <input type="text" class="form-control" id="gclub" name="gclub" value="{{ $klasemen->gclub }}" required>
+            <input type="file" class="form-control" id="gclub" name="gclub" value="{{ $klasemen->gclub }}" required>
         </div>
         <div class="mb-3">
             <label for="tanding" class="form-label">Tanding</label>

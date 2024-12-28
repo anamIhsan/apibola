@@ -4,16 +4,16 @@
 <div class="container">
     <h1>Edit Pertandingan</h1>
 
-    <form action="{{ route('pertandingan.update', $pertandingan->id) }}" method="POST">
+    <form action="{{ route('pertandingan.update', $pertandingan->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
             <label for="gtim1" class="form-label">Gambar Tim 1</label>
-            <input type="text" class="form-control" id="gtim1" name="gtim1" value="{{ $pertandingan->gtim1 }}" required>
+            <input type="file" class="form-control" id="gtim1" name="gtim1" value="{{ $pertandingan->gtim1 }}" required>
         </div>
         <div class="mb-3">
             <label for="gtim2" class="form-label">Gambar Tim 2</label>
-            <input type="text" class="form-control" id="gtim2" name="gtim2" value="{{ $pertandingan->gtim2 }}" required>
+            <input type="file" class="form-control" id="gtim2" name="gtim2" value="{{ $pertandingan->gtim2 }}" required>
         </div>
         <div class="mb-3">
             <label for="tim1" class="form-label">Tim 1</label>

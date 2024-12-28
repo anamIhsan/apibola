@@ -20,7 +20,23 @@ class PemainController extends Controller
 
     public function store(Request $request)
     {
-        Pemain::create($request->all());
+        $pemain = Pemain::create($request->all());
+
+        // Simpan file gambar Foto
+        $imageNameFoto = time() . '1.' . $request->foto->extension();
+        $request->foto->move(public_path('images'), $imageNameFoto);
+
+        // Simpan file gambar gclub
+        $imageNameGclub = time() . '2.' . $request->gclub->extension();
+        $request->gclub->move(public_path('images'), $imageNameGclub);
+
+        $foto = 'images/'.$imageNameFoto;
+        $gclub = 'images/'.$imageNameGclub;
+
+        $pemain->foto = $foto;
+        $pemain->save();
+        $pemain->gclub = $gclub;
+        $pemain->save();
 
         return redirect()->route('pemain.index')->with('success', 'data berhasil ditambahkan.');
     }
@@ -34,6 +50,30 @@ class PemainController extends Controller
     {
 
         $pemain->update($request->all());
+
+        if ($request->foto) {
+            // Simpan file gambar Foto
+            $imageNameFoto = time() . '1.' . $request->foto->extension();
+            $request->foto->move(public_path('images'), $imageNameFoto);
+
+            $foto = 'images/'.$imageNameFoto;
+
+            $pemain->foto = $foto;
+
+            $pemain->save();
+        }
+
+        if ($request->gclub) {
+            // Simpan file gambar gclub
+            $imageNameGclub = time() . '2.' . $request->gclub->extension();
+            $request->gclub->move(public_path('images'), $imageNameGclub);
+
+            $gclub = 'images/'.$imageNameGclub;
+
+            $pemain->gclub = $gclub;
+
+            $pemain->save();
+        }
 
         return redirect()->route('pemain.index')->with('success', 'data berhasil diperbarui.');
     }
